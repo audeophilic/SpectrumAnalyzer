@@ -1,0 +1,7 @@
+.vs/
+__vm/
+Libraries/
+Release/
+*.sln
+*.vcx*
+
