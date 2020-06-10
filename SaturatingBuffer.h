@@ -6,6 +6,8 @@
 #include "WProgram.h"
 #endif
 
+#define DEFAULT_MAX_BUFFER_ITEMS 100
+
 template <typename T> class SaturatingBuffer {
     class Node {
     public:
@@ -41,9 +43,12 @@ template <typename T> class SaturatingBuffer {
     }
 
 public:
-    SaturatingBuffer(unsigned int max_items = 100) :
-        _head(nullptr), _tail(nullptr), _write_enabled(true),
-        _items_cnt(0), _max_items(max_items) {}
+    SaturatingBuffer() :
+        SaturatingBuffer(DEFAULT_MAX_BUFFER_ITEMS) {}
+
+    SaturatingBuffer(unsigned int max_items) :
+        _head(nullptr), _tail(nullptr), _max(nullptr),
+        _max_items(max_items), _write_enabled(true), _items_cnt(0) {}
 
     ~SaturatingBuffer() {
         clear();
@@ -148,10 +153,11 @@ public:
     unsigned int max_memory_size() { return sizeof(T) * _max_items; }
 
     /*
+            DEACTIVATED FEATURE
             Returns the ith element of the queue for indexing.
             May hog a lot of resources if done in a loop, so for better performance,
             use the toArray function.
-    */
+    *//*
     T operator[](const int i) {
         if (isEmpty() || i >= max_queue_size()) return pop();
         int counter = 0;
@@ -162,7 +168,7 @@ public:
             ++counter;
             ptr = ptr->next;
         }
-    }
+    }*/
 
     /*
             Copies each item in the queue over one-by-one into an array of the same # elements
