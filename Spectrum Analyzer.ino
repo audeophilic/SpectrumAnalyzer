@@ -1,7 +1,6 @@
 #include <Adafruit_NeoPixel.h>
 #include "FFT.h"
 #include "SaturatingBuffer.h"
-#include "LightGrid.h"
 
 #define STRIP0_PIN 7
 #define STRIP1_PIN 8
