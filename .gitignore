@@ -4,4 +4,5 @@ Libraries/
 Release/
 *.sln
 *.vcx*
+Debug/
 
